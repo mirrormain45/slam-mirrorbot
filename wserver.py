@@ -26,7 +26,7 @@ page = """
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Torrent File Selector</title>
-    <link rel="icon" href="https://telegra.ph/file/a97fb49ff2498018a59a7.png" type="image/jpg">
+    <link rel="icon" href="https://telegra.ph/file/6507910fd06d18dfaba82.jpg" type="image/jpg">
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
@@ -202,16 +202,15 @@ input[type="submit"]:hover, input[type="submit"]:focus{
     <header>
       <div class="brand">
         <img
-          src="https://telegra.ph/file/a97fb49ff2498018a59a7.png"
+          src="https://telegra.ph/file/d8805be5ed790c47345fc.jpg"
           alt="logo"
         />
-        <a href="https://t.me/SlamMirrorUpdates"> 
-          <h2 class="name">slam-mirrorbot</h2>
+        <a href="https://t.me/GdriveMirrorCloud"> 
+          <h2 class="name">Gdrive Mirror Cloud</h2>
         </a>
       </div>
       <div class="social">
-        <a href="https://github.com/SlamDevs/slam-mirrorbot"><i class="fab fa-github"></i></a>
-        <a href="https://t.me/SlamMirrorUpdates"><i class="fab fa-telegram"></i></a>
+        <a href="https://t.me/GdriveMirrorCloud"><i class="fab fa-telegram"></i></a>
       </div>
     </header>
     <section>
@@ -527,16 +526,15 @@ section span{
     <header>
       <div class="brand">
         <img
-          src="https://telegra.ph/file/a97fb49ff2498018a59a7.png"
+          src="https://telegra.ph/file/d8805be5ed790c47345fc.jpg"
           alt="logo"
         />
-        <a href="https://t.me/SlamMirrorUpdates">
-          <h2 class="name">slam-mirrorbot</h2>
+        <a href="https://t.me/GdriveMirrorCloud">
+          <h2 class="name">Gdrive Mirror Cloud</h2>
         </a>
       </div>
       <div class="social">
-        <a href="https://github.com/SlamDevs/slam-mirrorbot"><i class="fab fa-github"></i></a>
-        <a href="https://t.me/SlamMirrorUpdates"><i class="fab fa-telegram"></i></a>
+        <a href="https://t.me/GdriveMirrorCloud"><i class="fab fa-telegram"></i></a>
       </div>
     </header>
     <section>
@@ -560,7 +558,7 @@ section span{
 """
 
 
-@routes.get('/slam/files/{hash_id}')
+@routes.get('/gdmc/files/{hash_id}')
 async def list_torrent_contents(request):
 
     torr = request.match_info["hash_id"]
@@ -568,7 +566,7 @@ async def list_torrent_contents(request):
     gets = request.query
 
     if "pin_code" not in gets.keys():
-        rend_page = code_page.replace("{form_url}", f"/slam/files/{torr}")
+        rend_page = code_page.replace("{form_url}", f"/gdmc/files/{torr}")
         return web.Response(text=rend_page, content_type='text/html')
 
     client = qba.Client(host="localhost", port="8090",
@@ -599,7 +597,7 @@ async def list_torrent_contents(request):
 
     rend_page = page.replace("{My_content}", cont[0])
     rend_page = rend_page.replace(
-        "{form_url}", f"/slam/files/{torr}?pin_code={pincode}")
+        "{form_url}", f"/gdmc/files/{torr}?pin_code={pincode}")
     client.auth_log_out()
     return web.Response(text=rend_page, content_type='text/html')
 
@@ -654,7 +652,7 @@ async def re_verfiy(paused, resumed, client, torr):
     return True
 
 
-@routes.post('/slam/files/{hash_id}')
+@routes.post('/gdmc/files/{hash_id}')
 async def set_priority(request):
 
     torr = request.match_info["hash_id"]
@@ -705,7 +703,7 @@ async def set_priority(request):
 @routes.get('/')
 async def homepage(request):
 
-    return web.Response(text="<h1>See slam-mirrorbot <a href='https://github.com/SlamDevs/slam-mirrorbot'>@GitHub</a> By <a href='https://github.com/SlamDevs'>SlamDevs</a></h1>", content_type="text/html")
+    return web.Response(text="<h1>Join Gdrive Mirror Cloud <a href='https://t.me/GdriveMirrorCloud'>@GdriveMirrorCloud</a> By <a href='https://t.me/itsabdulkader'>@itsabdulkader</a></h1>", content_type="text/html")
 
 
 async def e404_middleware(app, handler):
@@ -715,11 +713,11 @@ async def e404_middleware(app, handler):
         try:
             response = await handler(request)
             if response.status == 404:
-                return web.Response(text="<h1>404: Page not found</h2><br><h3>slam-mirrorbot</h3>", content_type="text/html")
+                return web.Response(text="<h1>404: Page not found</h2><br><h3>Gdrive Mirror Cloud</h3>", content_type="text/html")
             return response
         except web.HTTPException as ex:
             if ex.status == 404:
-                return web.Response(text="<h1>404: Page not found</h2><br><h3>slam-mirrorbot</h3>", content_type="text/html")
+                return web.Response(text="<h1>404: Page not found</h2><br><h3>Gdrive Mirror Cloud</h3>", content_type="text/html")
             raise
     return middleware_handler
 
